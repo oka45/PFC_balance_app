@@ -6,21 +6,23 @@ class StaticPagesControllerTest < ActionDispatch::IntegrationTest
     @base_title = "PFCバランサー"
   end
 
-  test "should get root(ルーティング、ルートのテスト)" do
-    get root_url
-    assert_response :success
-  end
 
-  test "should get home(ホームページのテスト)" do
-    get static_pages_home_url
+  test "should get home(ルートホームページのテスト)" do
+    get root_path
     assert_response :success
     assert_select "title", "TOP|#{@base_title}"
   end
 
   test "shold get about"do
-    get static_pages_about_url
+    get about_path
     assert_response :success
-    assert_select "title", "使い方|#{@base_title}"
+    assert_select "title", "用途|#{@base_title}"
+  end
+
+  test "should get management(管理ページのテスト)"do
+    get management_path
+    assert_response :success
+    assert_select "title", "PFC管理|#{@base_title}"
   end
 
 end
