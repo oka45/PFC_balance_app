@@ -5,6 +5,8 @@ ruby '2.6.6'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.1.0'
+# State-of-the-art hash function
+gem 'bcrypt',         '3.1.13'
 #bootstrap-sassは、Bootstrapフレームワークでは、スタイルシートを生成するためにLESSを使用するので、SをSassへ変換
 gem 'bootstrap-sass', '3.4.1'
 # Use sqlite3 as the database for Active Record

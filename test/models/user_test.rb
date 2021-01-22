@@ -3,7 +3,8 @@ require "test_helper"
 class UserTest < ActiveSupport::TestCase
 
   def setup
-    @user = User.new(name: "Shingo Oka", email: "user@example.com")
+    @user = User.new(name: "Shingo Oka", email: "user@example.com",
+                password: "foobar", password_confirmation: "foobar")
   end
 
   test "should be valid (バリテーションが有効か)" do
@@ -50,8 +51,17 @@ class UserTest < ActiveSupport::TestCase
 
   test "email addresses should be unique (メールアドレスが一意であるか)" do
     duplicate_user = @user.dup
-    duplicate_user.email = @user.email.upcase
     @user.save
     assert_not duplicate_user.valid?
+  end
+
+  test "password should be present (nonblank) (空白のパスワードはNG)" do
+    @user.password = @user.password_confirmation = " " * 6
+    assert_not @user.valid?
+  end
+
+  test "password should have a minimum length（パスワードは６文字まで）" do 
+    @user.password = @user.password_confirmation = "a" * 5
+    assert_not @user.valid?
   end
 end
