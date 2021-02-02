@@ -1,0 +1,4 @@
+test:
+  name: Test Test
+  email: testtest@gmail.com
+  password_digest: <%= BCrypt::Password.create('password') %>
