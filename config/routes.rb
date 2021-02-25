@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
+  get '/management', to: 'search#search'
   root 'static_pages#home'
   get '/about', to:'static_pages#about'
-  get '/management', to:'static_pages#management'
   get '/signup', to:'users#new'
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'

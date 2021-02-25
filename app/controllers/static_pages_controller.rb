@@ -5,7 +5,4 @@ class StaticPagesController < ApplicationController
   def about
   end
 
-  def management
-  end
-
 end
