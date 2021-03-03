@@ -1,12 +1,20 @@
 require 'rails_helper'
 
-RSpec.describe "Searches", type: :request do
+RSpec.describe SearchController do
 
-  describe "GET /search" do
-    it "returns http success" do
-      get "/search/search"
-      expect(response).to have_http_status(:success)
-    end
-  end
+  #describe "管理ページへのアクセス　GET /management",　type: :request do
+  #  let(:user) { FactoryBot.create(:user) }
+  #  context 'ログインしていないユーザー'do
 
+  #    it "レスポンスが失敗「302」するか" do
+  #      get '/management'
+  #      expect(response).to have_http_status "302"
+  #    end
+  #    it "ログインページが表示されるか　(render /login)" do
+  #      get '/management'
+  #      expect(response).to redirect_to('/login')
+  #    end
+
+   #end
+  #end
 end

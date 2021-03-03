@@ -21,8 +21,7 @@ class StaticPagesControllerTest < ActionDispatch::IntegrationTest
 
   test "should get management(管理ページのテスト)"do
     get management_path
-    assert_response :success
-    assert_select "title", "PFC管理|#{@base_title}"
+    assert_redirected_to login_url
   end
 
 end
