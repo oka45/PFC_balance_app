@@ -10,6 +10,7 @@ FactoryBot.define do
     quantity { 100 }
     date { "2021-03-02" }
     created_at { 10.minutes.ago }
+    time_zone {"昼"}
     association :user
 
     trait :minutes do
@@ -22,8 +23,10 @@ FactoryBot.define do
       total_calories { 450 }
       quantity { 100 }
       date { "2021-03-02" }
+      time_zone {"夜"}
       created_at { 50.minutes.ago }
     end
+
     trait :hour do
       food_name { "＜鳥肉類＞にわとり　［成鶏肉］　手羽　皮つき　生" }
       protein { 23 }
@@ -34,8 +37,10 @@ FactoryBot.define do
       total_calories { 195 }
       quantity { 100 }
       date { "2021-03-02" }
+      time_zone {"昼"}
       created_at { 1.hour.ago }
     end
+
     trait :most do
       food_name { "＜魚類＞あこうだい　生　　" }
       protein { 16.8 }
@@ -46,6 +51,7 @@ FactoryBot.define do
       total_calories { 93 }
       quantity { 100 }
       date { "2021-03-02" }
+      time_zone {"朝"}
       created_at { Time.zone.now }
     end
   end
