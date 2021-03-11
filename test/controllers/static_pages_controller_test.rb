@@ -19,9 +19,5 @@ class StaticPagesControllerTest < ActionDispatch::IntegrationTest
     assert_select "title", "用途|#{@base_title}"
   end
 
-  test "should get management(管理ページのテスト)"do
-    get management_path
-    assert_redirected_to login_url
-  end
 
 end

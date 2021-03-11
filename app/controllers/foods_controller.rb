@@ -10,10 +10,12 @@ class FoodsController < ApplicationController
     @food_information = result[:items]
     @food = current_user.foods.build
     @foods = current_user.foods.all
-    
-    #@edit_food = current_user.foods.find_by(params[:edit_id])
-
-
+    if params[:bottun].to_i == 1
+      @edit_food = 1 #編集前画面
+    else
+      @edit_food = 2 #編集中画面
+    end
+    @update_food = current_user.foods.find_by(params[:id])
 
   end
 
@@ -23,12 +25,17 @@ class FoodsController < ApplicationController
       flash[:success] = "保存しました"
       redirect_to foods_url
     else
-      render 'foods/management'
+      render 'foods'
     end
   end
 
   def update
-
+    if @food  = current_user.foods.update(food_params)
+      flash[:success] = "食事情報を変更しました"
+      redirect_to foods_url
+    else
+      render  'foods/index'
+    end
   end
 
   def destroy

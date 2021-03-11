@@ -9,49 +9,60 @@
     <th>炭水化物</th>
     <th>脂質</th>
     <th>食塩</th>
+    <th>カロリー(100g)</th>
     <th>摂取カロリー</th>
     <th>摂取量(g)</th>
     <th>時間帯</th>
-    <th><%#= link_to '編集', management_path, edit_id: nil  %></th>
-  </thead>
-  <%# if @edit_food.blank? %>
-
-  <tbody>
-    値なし
-    <% @foods.each do |food| %>
-        <tr><td><%= food.food_name %></td>
-        <td><%= food.protein %></td>
-        <td><%= food.carbohydrate %></td>
-        <td><%= food.fat %></td>
-        <td><%= food.salt_equivalents %></td>
-        <td><%= food.total_calories %></td>
-        <td><%= food.quantity %></td>
-        <td><%= food.time_zone %></td>
-        <td><%= link_to "削除", food, method: :delete %></td></tr>
+    <% if @edit_food == 2 %>
+      <th><%= link_to "編集する", {action: :index, bottun: 1} %></th>
     <% end %>
-  <%# else %>
-  <% if false %>
-  値あり
+    <% if @edit_food == 1 %>
+      <th><%= link_to "編集完了", {action: :index, bottun: 2} %></th>
+    <% end %>
+  </thead>
+</table>
+<tbody>
+  <% if @edit_food == 2 %>
+
+<table>
   <% @foods.each do |food| %>
-    <%= form_with model: @food do |f|  %>
-      <tr><td><%= food.food_name %><%= f.hidden_field :food_name, :value => food.food_name %></td>
+      <tr><td><%= food.food_name %></td>
+      <td><%= food.protein %></td>
+      <td><%= food.carbohydrate %></td>
+      <td><%= food.fat %></td>
+      <td><%= food.salt_equivalents %></td>
+      <td><%= food.calorie %></td>
+      <td><%= food.total_calories %></td>
+      <td><%= food.quantity %></td>
+      <td><%= food.time_zone %></td>
+      <td><%= link_to "削除", food, method: :delete %></td></tr>
+  <% end %>
+</table>
+  <% end %>
+</tbody>
+  <% if @edit_food == 1 %>
+<tbody>
+
+  <% @foods.each do |food| %>
+    <%= form_with model: @update_food do |f|  %>
+    <table>
+        <%= f.hidden_field :id, :value => food.id %>
+        <tr><td><%= food.food_name %><%= f.hidden_field :food_name, :value => food.food_name %></td>
         <td><%= food.protein %><%= f.hidden_field :protein, :value => food.protein %></td>
         <td><%= food.carbohydrate %><%= f.hidden_field :carbohydrate, :value => food.carbohydrate %></td>
         <td><%= food.fat %><%= f.hidden_field :fat, :value => food.fat %></td>
         <td><%= food.salt_equivalents %><%= f.hidden_field :salt_equivalents, :value => food.salt_equivalents %></td>
-        <td><%= food.total_calories %><%= f.hidden_field :total_calories, :value => food.total_calories %></td>
-        <td><%= food.quantity %><%= f.number_field :quantity, step: "0.1", min: 0.1, max: 10000, required: true %></td>
-        <td><%= f.select :time_zone, [["朝","朝"],["昼","昼"],["夜","夜"],["間食","間食"],["起床","起床"],["就寝","就寝"]], {include_blank: "選択"}, required: true %></td>
+        <td><%= food.calorie %><%= f.hidden_field :calorie, :value => food.calorie %></td>
+        <td><%= food.total_calories %></td>
+        <td><%= f.number_field :quantity, step: "0.1", min: 0.1, max: 10000, required: true, value: food.quantity %></td>
+        <td><%= f.select :time_zone, [["朝","朝"],["昼","昼"],["夜","夜"],["間食","間食"],["起床","起床"],["就寝","就寝"]], {selected: food.time_zone}, required: true%></td>
         <td><%= f.submit "保存"  %></td></tr>
-      <% end %>
-   <% end %>
-   <% end %>
-
-<%# end %>
-
+      </table>
+    <% end %>
+  <% end %>
+  <% end %>
 </tbody>
 
-</table>
 
 
 
