@@ -17,8 +17,14 @@ class Food < ApplicationRecord
     validates :quantity
     validates :time_zone
     validates :total_calories
-    #validates :date
+    validates :date
   end
+
+  def start_time
+    self.date
+  end
+
+  
 
 
 
