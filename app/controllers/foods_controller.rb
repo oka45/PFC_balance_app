@@ -50,7 +50,6 @@ class FoodsController < ApplicationController
   end
 
   def destroy
-    binding.pry
     @food = Food.find(params[:id])
     if @food.user_id == current_user.id
       @food.destroy
