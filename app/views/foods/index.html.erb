@@ -85,6 +85,7 @@
     <th>時間帯</th>
   </thead>
   <tbody>
+  <% if @food_information.present? %>
   <% @food_information.each do |food| %>
     <%= form_with model: @food, local: true do |f| %>
       <tr><td><%= food[:food_and_description] %><%= f.hidden_field :food_name, :value => food[:food_and_description] %></td>
@@ -99,6 +100,7 @@
       <td><%= f.submit "保存" %></td></tr>
     <% end %>
   <% end %>
+  <% end %>
 </tbody>
 
 </table>
@@ -106,6 +108,8 @@
 <%= month_calendar do |date| %>
   <%= date.day %>
   <p>合計カロリー</p>
+<% if @all_foods.present? %>
   <%= link_to @all_foods.where(date: date).sum(:total_calories), foods_path(date) %>
+<% end %>
   kcal
 <% end %>

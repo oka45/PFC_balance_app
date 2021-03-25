@@ -1,17 +1,19 @@
 FactoryBot.define do
-  factory :user do
 
+  factory :user do
     name                  { Gimei.name }
     email                 { "test#{Gimei.address.city.romaji}@gmail.com" }
     password              { "password" }
     password_confirmation { "password" }
   end
 
-  factory :other_user do
-    name                  { Gimei.name }
-    email                 { "test#{Gimei.address.city.romaji}@gmail.com" }
+  factory :admin_user do
+
+    name                  { "test" }
+    email                 { "testokaoka@gmail.com" }
     password              { "password" }
     password_confirmation { "password" }
+    admin                 { true }
   end
 
 end

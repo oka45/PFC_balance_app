@@ -1,6 +1,5 @@
 class FoodsController < ApplicationController
-  before_action :logged_in_user, only:[:edit, :create, :destroy, :management ]
-
+  before_action :logged_in_user
   def index
     #検索用
     food_name = params[:name] ||= '空欄'
@@ -23,7 +22,6 @@ class FoodsController < ApplicationController
 
     #カレンダーに表示する用
     @all_foods = current_user.foods.all
-
     @path = Date.parse(params[:format] ||= Date.current.strftime('%Y/%m/%d'))
 
   end
