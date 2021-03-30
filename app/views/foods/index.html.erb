@@ -13,16 +13,15 @@
     <th>摂取カロリー</th>
     <th>摂取量(g)</th>
     <th>時間帯</th>
-    <% if @edit_food == 2 %>
-      <th><%= link_to "編集する", {action: :index, bottun: 1, :format => params[:format]} %></th>
-    <% end %>
     <% if @edit_food == 1 %>
-      <th><%= link_to "編集しない", {action: :index, bottun: 2, :format => params[:format]} %></th>
+      <th><%= link_to "編集する", {action: :index, bottun: 2, :format => params[:format]} %></th>
+    <% else %>
+      <th><%= link_to "編集しない", {action: :index, bottun: 1, :format => params[:format]} %></th>
     <% end %>
   </thead>
 </table>
 <tbody>
-  <% if @edit_food == 2 %>
+  <% if @edit_food == 1 %>
 
 <table>
   <% @foods.each do |food| %>
@@ -40,7 +39,7 @@
 </table>
   <% end %>
 </tbody>
-  <% if @edit_food == 1 %>
+  <% if @edit_food == 2 %>
 <tbody>
 
   <% @foods.each do |food| %>
@@ -68,6 +67,11 @@
 
 <%= form_with url: "/foods.#{@path}", method: :get, local: true do |f| %>
   <%= f.text_field :name, placeholder: "食品名を入力してください", required: true %>
+  <% if @response.code == "400" %>
+    <div class="alert alert-warning">
+      <p>空白が含まれる為、検索できません</p>
+    </div>
+  <% end %>
   <%= f.hidden_field :date, :value => @path %>
   <%= f.submit "検索" %>
 <% end %>

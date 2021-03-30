@@ -4,10 +4,6 @@ RSpec.describe "Foods", type: :request do
   let(:user) { FactoryBot.create(:user) }
   let(:other_user) { FactoryBot.create(:user) }
 
-  describe "#index oracle API" do
-
-  end
-
   describe "#index" do
     #ログイン済みユーザー
     context "login user" do

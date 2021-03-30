@@ -5,19 +5,33 @@ class FoodsController < ApplicationController
     food_name = params[:name] ||= '空欄'
     encode = URI.encode_www_form_component(food_name)
     uri = URI.parse("https://apex.oracle.com/pls/apex/nutrition_management/search/food/#{encode}")
-    response = Net::HTTP.get_response(uri)
-    result = JSON.parse(response.body, symbolize_names: true)
-    @food_information = result[:items]
+    @response = Net::HTTP.get_response(uri)
+    if @response.code == "400"
+      @all_foods = current_user.foods.all
+      @path = Date.parse(params[:format] ||= Date.current.strftime('%Y/%m/%d'))
+      render 'index'
+    else
+      result = JSON.parse(@response.body, symbolize_names: true)
+      @food_information = result[:items]
+      if @food_information.empty?
+        flash[:success] = "該当する食品がありません"
+        flash.discard(:success)
+      else
+        flash[:success] = "#{@food_information.count}件の食品が該当しました"
+        flash.discard(:success)
+      end
+    end
+
     #保存するためのインスタンス
     @food = current_user.foods.build
     #閲覧、削除、編集のため
     @foods = current_user.foods.where(date: params[:format] ||= Date.current.strftime('%Y/%m/%d'))
 
     #ここで編集画面を認識している
-    if params[:bottun].to_i == 1
-      @edit_food = 1 #編集中画面
+    if params[:bottun].to_i == 2
+      @edit_food = 2 #編集中画面
     else
-      @edit_food = 2 #編集前後画面
+      @edit_food = 1 #編集前後画面
     end
 
     #カレンダーに表示する用
