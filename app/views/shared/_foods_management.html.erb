@@ -1,0 +1,21 @@
+
+<% if @foods.blank? %>
+  <tr class="table-active">
+    <td colspan="10">食品情報なし</td>
+  </tr>
+<% else %>
+  <% @foods.each do |food| %>
+      <tr>
+        <td><%= food.food_name %></td>
+        <td><%= food.protein %></td>
+        <td><%= food.carbohydrate %></td>
+        <td><%= food.fat %></td>
+        <td><%= food.salt_equivalents %></td>
+        <td><%= food.calorie %></td>
+        <td><%= food.total_calories %></td>
+        <td><%= food.quantity %></td>
+        <td><%= food.time_zone %></td>
+        <td><%= link_to "削除", food_path(food.id, :format => params[:format]), method: :delete %></td>
+      </tr>
+  <% end %>
+<% end %>

@@ -50,6 +50,7 @@ RSpec.describe "Foods", type: :request do
   end
 
   describe "#create" do
+    let!(:food) { FactoryBot.create(:food, user: user)}
     #ログイン済みユーザー
     context "login user" do
       before do
@@ -75,8 +76,9 @@ RSpec.describe "Foods", type: :request do
       it "Cannot save if the parameter is invalid" do
         expect{
           post foods_path, params: {
-            food: FactoryBot.attributes_for(:food, :invalid)
+            food: FactoryBot.attributes_for(:food, :invalid, user: food.user)
           }
+          binding.pry
         }.to_not change(user.foods, :count)
       end
     end

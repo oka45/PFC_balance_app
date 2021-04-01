@@ -24,7 +24,7 @@ class Food < ApplicationRecord
 
   def date_start
     unless date == nil
-      errors.add(:date, 'は、今日を含む過去の日付を入力して下さい') if date > Date.today
+      errors.add(:date, "は、今日を含む過去の日付を入力して下さい") if date > Date.today
     end
   end
 

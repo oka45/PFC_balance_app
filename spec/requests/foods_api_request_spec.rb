@@ -40,7 +40,7 @@ RSpec.describe "FoodsApi", type: :request do
       #リダイレクトされるとエラーが表示される
       it "リダイレクトされるとエラーが表示される" do
         get foods_path, params: { name: " " }
-        expect(response.body).to include "空白文字だけの可能性があるため検索できません"
+        expect(response.body).to include "空白が含まれる為、検索できません"
       end
     end
 

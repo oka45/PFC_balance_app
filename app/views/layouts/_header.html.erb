@@ -3,15 +3,16 @@
     <%= link_to "PFCバランサー", root_path, id: "logo" %>
     <nav>
       <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to "TOP",   root_path %></li>
-        <li><%= link_to "用途",   about_path %></li>
         <% if logged_in? %>
-        <li><%= link_to "PFC管理",   foods_path %></li>
+        <li><%= link_to "PFC管理", foods_path %></li>
         <li><%= link_to "プロフィール", current_user %></li>
-        <li><%= link_to "プロフィール更新", edit_user_path(current_user) %></li>
         <li><%= link_to "ログアウト", logout_path, method: :delete %></li>
-        <li><%= link_to "ユーザー一覧", users_path %></li>
+         <% if logged_in? && current_user.admin? %>
+         <li><%= link_to "ユーザー一覧", users_path %></li>
+         <% end %>
         <% else %>
+        <li><%= link_to "TOP", root_path %></li>
+        <li><%= link_to "用途", about_path %></li>
         <li><%= link_to "ログイン", login_path %></li>
         <% end %>
       </ul>

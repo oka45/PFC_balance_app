@@ -13,10 +13,7 @@ class FoodsController < ApplicationController
     else
       result = JSON.parse(@response.body, symbolize_names: true)
       @food_information = result[:items]
-      if @food_information.empty?
-        flash[:success] = "該当する食品がありません"
-        flash.discard(:success)
-      else
+      unless @food_information.empty?
         flash[:success] = "#{@food_information.count}件の食品が該当しました"
         flash.discard(:success)
       end

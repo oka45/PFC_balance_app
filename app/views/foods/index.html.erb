@@ -1,114 +1,80 @@
 <% provide(:title, "PFC管理") %>
 
-<h1>PFCバランス管理</h1>
-<p>PFCバランスを管理しよう！！</p>
-<table>
-  <thead>
-    <th>食品名</th>
-    <th>たんぱく質</th>
-    <th>炭水化物</th>
-    <th>脂質</th>
-    <th>食塩</th>
-    <th>カロリー(100g)</th>
-    <th>摂取カロリー</th>
-    <th>摂取量(g)</th>
-    <th>時間帯</th>
-    <% if @edit_food == 1 %>
-      <th><%= link_to "編集する", {action: :index, bottun: 2, :format => params[:format]} %></th>
-    <% else %>
-      <th><%= link_to "編集しない", {action: :index, bottun: 1, :format => params[:format]} %></th>
-    <% end %>
-  </thead>
-</table>
-<tbody>
-  <% if @edit_food == 1 %>
-
-<table>
-  <% @foods.each do |food| %>
-      <tr><td><%= food.food_name %></td>
-      <td><%= food.protein %></td>
-      <td><%= food.carbohydrate %></td>
-      <td><%= food.fat %></td>
-      <td><%= food.salt_equivalents %></td>
-      <td><%= food.calorie %></td>
-      <td><%= food.total_calories %></td>
-      <td><%= food.quantity %></td>
-      <td><%= food.time_zone %></td>
-      <td><%= link_to "削除", food_path(food.id, :format => params[:format]), method: :delete %></td></tr>
-  <% end %>
-</table>
-  <% end %>
-</tbody>
-  <% if @edit_food == 2 %>
-<tbody>
-
-  <% @foods.each do |food| %>
-    <%= form_with url: food_path(food), local: true, method: :patch do |f|  %>
-    <table>
-        <tr><td><%= food.id %><%= f.hidden_field :id, :value => food.id%></td>
-        <td><%= food.food_name %></td>
-        <td><%= food.protein %></td>
-        <td><%= food.carbohydrate %></td>
-        <td><%= food.fat %></td>
-        <td><%= food.salt_equivalents %></td>
-        <td><%= food.calorie %><%= f.hidden_field :calorie, :value => food.calorie %></td>
-        <td><%= food.total_calories %></td>
-        <td><%= f.number_field :quantity, step: "0.1", min: 0.1, max: 10000, required: true, value: food.quantity %></td>
-        <td><%= f.select :time_zone, [["朝","朝"],["昼","昼"],["夜","夜"],["間食","間食"],["起床","起床"],["就寝","就寝"]], {selected: food.time_zone}, required: true%></td>
-        <td><%= f.submit "保存"  %></td></tr>
-      </table>
-    <% end %>
-  <% end %>
-  <% end %>
-</tbody>
-
-
-
-
 <%= form_with url: "/foods.#{@path}", method: :get, local: true do |f| %>
-  <%= f.text_field :name, placeholder: "食品名を入力してください", required: true %>
+  <div class="input-group">
+  <%= f.text_field :name, placeholder: "摂取した食品を入力してください", required: true, class: "form-control" %>
+  <span class="input-group-btn">
+  <%= f.submit "検索", class: "btn btn-primary" %>
+  </span>
+  </div>
   <% if @response.code == "400" %>
     <div class="alert alert-warning">
       <p>空白が含まれる為、検索できません</p>
     </div>
   <% end %>
   <%= f.hidden_field :date, :value => @path %>
-  <%= f.submit "検索" %>
+<% end %>
+
+<% unless @food_information.blank? %>
+<div class="table-responsive">
+<h3>検索結果</h3>
+<table class="table table-bordered table-hover">
+  <thead>
+    <tr class="danger">
+      <th>食品名</th>
+      <th>たんぱく質</th>
+      <th>炭水化物</th>
+      <th>脂質</th>
+      <th>食塩</th>
+      <th>カロリー(100g)</th>
+      <th>摂取量(g)</th>
+      <th>時間</th>
+      <th>保存</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render 'shared/food_information'%>
+  </tbody>
+</table>
+</div>
 <% end %>
 
 
-<table>
+<div class="table-responsive">
+<h2><%= @path.strftime('%m月%d日')%>摂取量</h2>
+<table class="table table-bordered table-hover table-condensed">
   <thead>
-    <th>食品名</th>
-    <th>たんぱく質</th>
-    <th>炭水化物</th>
-    <th>脂質</th>
-    <th>食塩</th>
-    <th>カロリー(100g)</th>
-    <th>摂取量(g)</th>
-    <th>時間帯</th>
+    <tr class="warning">
+      <th>食品名</th>
+      <th>たんぱく質</th>
+      <th>炭水化物</th>
+      <th>脂質</th>
+      <th>食塩</th>
+      <th>カロリー(100g)</th>
+      <th>摂取カロリー</th>
+      <th>摂取量(g)</th>
+      <th>時間</th>
+    <% if @edit_food == 1 %>
+      <th><%= link_to "編集", {action: :index, bottun: 2, :format => params[:format]} %></th>
+    <% else %>
+      <th><%= link_to "編集終了", {action: :index, bottun: 1, :format => params[:format]} %></th>
+    <% end %>
+    </tr>
   </thead>
   <tbody>
-  <% if @food_information.present? %>
-  <% @food_information.each do |food| %>
-    <%= form_with model: @food, local: true do |f| %>
-      <tr><td><%= food[:food_and_description] %><%= f.hidden_field :food_name, :value => food[:food_and_description] %></td>
-      <td><%= food[:protein] %><%= f.hidden_field :protein, :value => food[:protein] %></td>
-      <td><%= food[:carbohydrate] %><%= f.hidden_field :carbohydrate, :value => food[:carbohydrate] %></td>
-      <td><%= food[:fat] %><%= f.hidden_field :fat, :value => food[:fat] %></td>
-      <td><%= food[:salt_equivalents] %><%= f.hidden_field :salt_equivalents, :value => food[:salt_equivalents] %></td>
-      <td><%= food[:energy__kcal_] %><%= f.hidden_field :calorie, :value => food[:energy__kcal_] %></td>
-      <td><%= f.number_field :quantity, step: "0.1", min: 0.1, max: 10000, required: true %></td>
-      <td><%= f.select :time_zone, [["朝","朝"],["昼","昼"],["夜","夜"],["間食","間食"],["起床","起床"],["就寝","就寝"]], {include_blank: "選択"}, required: true %></td>
-      <%= f.hidden_field :date, :value => @path %>
-      <td><%= f.submit "保存" %></td></tr>
-    <% end %>
+  <% if @edit_food == 1 %>
+    <%= render 'shared/foods_management'%>
   <% end %>
-  <% end %>
-</tbody>
 
+  <% if @edit_food == 2 %>
+    <%= render 'shared/foods_management_edit'%>
+  <% end %>
+  </tbody>
 </table>
+</div>
 
+
+<h3>今月のカロリーカレンダー</h3>
 <%= month_calendar do |date| %>
   <%= date.day %>
   <p>合計カロリー</p>
