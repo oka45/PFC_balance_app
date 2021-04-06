@@ -186,12 +186,4 @@ RSpec.describe Food, type: :model do
     end
   end
 
-  #合計カロリーがなければ無効
-  it "is invalid without total_calories" do
-    food.calorie = nil
-    food.quantity = nil
-    food.total_calories = nil
-    expect(food).to_not be_valid
-  end
-
 end

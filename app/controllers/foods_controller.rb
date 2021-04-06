@@ -21,23 +21,25 @@ class FoodsController < ApplicationController
 
     #保存するためのインスタンス
     @food = current_user.foods.build
-    #閲覧、削除、編集のため
+    #選択した日付の食品　閲覧、削除、編集
     @foods = current_user.foods.where(date: params[:format] ||= Date.current.strftime('%Y/%m/%d'))
-
-    #ここで編集画面を認識している
+    @food_morning = current_user.foods.where(date: params[:format] ||= Date.current.strftime('%Y/%m/%d'), time_zone: "朝")
+    @food_lunch = current_user.foods.where(date: params[:format] ||= Date.current.strftime('%Y/%m/%d'), time_zone: "昼")
+    @food_night = current_user.foods.where(date: params[:format] ||= Date.current.strftime('%Y/%m/%d'), time_zone: "夜")
+    @food_snack = current_user.foods.where(date: params[:format] ||= Date.current.strftime('%Y/%m/%d'), time_zone: "間食")
+    @food_get_up = current_user.foods.where(date: params[:format] ||= Date.current.strftime('%Y/%m/%d'), time_zone: "起床")
+    @food_going_to_bed = current_user.foods.where(date: params[:format] ||= Date.current.strftime('%Y/%m/%d'), time_zone: "就寝")
     if params[:bottun].to_i == 2
       @edit_food = 2 #編集中画面
     else
       @edit_food = 1 #編集前後画面
     end
-
     #カレンダーに表示する用
-    @all_foods = current_user.foods.all
+    @all_foods = current_user.foods
     @path = Date.parse(params[:format] ||= Date.current.strftime('%Y/%m/%d'))
-
   end
 
-  def create #reateページに食品情報も見せる
+  def create #createページに食品情報も見せる
     @food = current_user.foods.build(food_params)
 
     if @food.save

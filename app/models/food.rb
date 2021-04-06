@@ -1,26 +1,44 @@
 class Food < ApplicationRecord
   belongs_to :user
   default_scope -> { order(created_at: :desc) }
-  validate :calorie_calculation, :date_start
+  validate :date_start
   with_options presence: true do
     validates :user_id, :food_name, :date
     validates :time_zone, inclusion: { in: [ "朝", "昼", "夜" ,"間食", "起床", "就寝" ] }
     with_options numericality: true  do
-      validates :protein,:carbohydrate, :fat, :salt_equivalents, :calorie, :quantity, :total_calories
+      validates :protein,:carbohydrate, :fat, :salt_equivalents, :calorie, :quantity
     end
   end
-
 
   def start_time
     self.date
   end
 
-  private
-  def calorie_calculation
-    if !calorie.blank? && !quantity.blank?
-      self.total_calories = calorie * (quantity * 0.01)
-    end
+  def total_protein
+    self.protein * (self.quantity * 0.01)
   end
+
+  def total_carbohydrate
+    self.carbohydrate * (self.quantity * 0.01)
+  end
+
+  def total_fat
+    self.fat * (self.quantity * 0.01)
+  end
+
+  def total_salt_equivalents
+    self.salt_equivalents * (self.quantity * 0.01)
+  end
+
+  def total_calorie
+    self.calorie * (self.quantity * 0.01)
+  end
+
+  def today_total_calories
+    self.sum("total_calorie")
+  end
+
+  private
 
   def date_start
     unless date == nil

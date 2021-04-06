@@ -17,6 +17,7 @@ textarea {
   resize: vertical;
 }
 
+
 .center {
   text-align: center;
 }
@@ -34,7 +35,7 @@ textarea {
   color: #fff;
   text-transform: uppercase;
   letter-spacing: -1px;
-  padding-top: 9px;
+  vertical-align: middle;
   font-weight: bold;
 }
 
@@ -98,4 +99,8 @@ input {
 #session_remember_me {
   width: auto;
   margin-left: 0;
+}
+
+.calendar-heading {
+ font-size: 1.7em;
 }

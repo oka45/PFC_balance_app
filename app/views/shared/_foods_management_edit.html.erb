@@ -1,23 +1,112 @@
 <% if @foods.blank? %>
-  <tr class="table-active">
+  <tr class="active">
     <td colspan="10">食品情報なし</td>
   </tr>
 <% else %>
-<% @foods.each do |food| %>
-  <%= form_with url: food_path(food), local: true, method: :patch do |f|  %>
-      <tr>
-        <%= f.hidden_field :id, :value => food.id%>
-        <td><%= food.food_name %></td>
-        <td><%= food.protein %></td>
-        <td><%= food.carbohydrate %></td>
-        <td><%= food.fat %></td>
-        <td><%= food.salt_equivalents %></td>
-        <td><%= food.calorie %><%= f.hidden_field :calorie, :value => food.calorie %></td>
-        <td><%= food.total_calories %></td>
-        <td><%= f.number_field :quantity, step: "0.1", min: 0.1, max: 10000, required: true, value: food.quantity %></td>
-        <td><%= f.select :time_zone, [["朝","朝"],["昼","昼"],["夜","夜"],["間食","間食"],["起床","起床"],["就寝","就寝"]], {selected: food.time_zone}, required: true%></td>
-        <td><%= f.submit "保存"  %></td>
-    </tr>
+  <% @food_get_up.each do |food| %>
+    <%= form_with url: food_path(food), local: true, method: :patch do |f|  %>
+        <tr class="danger">
+          <%= f.hidden_field :id, :value => food.id%>
+          <td><%= food.time_zone %></td>
+          <td><%= food.food_name %></td>
+          <td><%= food.total_protein %></td>
+          <td><%= food.total_carbohydrate %></td>
+          <td><%= food.total_fat %></td>
+          <td><%= food.total_salt_equivalents %></td>
+          <td><%= food.total_calorie%></td>
+          <td><%= f.number_field :quantity, step: "0.1", min: 0.1, max: 10000, required: true, value: food.quantity %></td>
+          <td><%= f.select :time_zone, [["朝","朝"],["昼","昼"],["夜","夜"],["間食","間食"],["起床","起床"],["就寝","就寝"]], {selected: food.time_zone}, required: true%></td>
+          <td><%= f.submit "保存", class: 'btn btn-info btn-xs' %></td>
+      </tr>
+    <% end %>
   <% end %>
-<% end %>
+  <% @food_morning.each do |food| %>
+    <%= form_with url: food_path(food), local: true, method: :patch do |f|  %>
+        <tr class="danger">
+          <%= f.hidden_field :id, :value => food.id%>
+          <td><%= food.time_zone %></td>
+          <td><%= food.food_name %></td>
+          <td><%= food.total_protein %></td>
+          <td><%= food.total_carbohydrate %></td>
+          <td><%= food.total_fat %></td>
+          <td><%= food.total_salt_equivalents %></td>
+          <td><%= food.total_calorie%></td>
+          <td><%= f.number_field :quantity, step: "0.1", min: 0.1, max: 10000, required: true, value: food.quantity %></td>
+          <td><%= f.select :time_zone, [["朝","朝"],["昼","昼"],["夜","夜"],["間食","間食"],["起床","起床"],["就寝","就寝"]], {selected: food.time_zone}, required: true%></td>
+          <td><%= f.submit "保存", class: 'btn btn-info btn-xs' %></td>
+      </tr>
+    <% end %>
+  <% end %>
+  <% @food_lunch.each do |food| %>
+    <%= form_with url: food_path(food), local: true, method: :patch do |f|  %>
+        <tr class="danger">
+          <%= f.hidden_field :id, :value => food.id%>
+          <td><%= food.time_zone %></td>
+          <td><%= food.food_name %></td>
+          <td><%= food.total_protein %></td>
+          <td><%= food.total_carbohydrate %></td>
+          <td><%= food.total_fat %></td>
+          <td><%= food.total_salt_equivalents %></td>
+          <td><%= food.total_calorie%></td>
+          <td><%= f.number_field :quantity, step: "0.1", min: 0.1, max: 10000, required: true, value: food.quantity %></td>
+          <td><%= f.select :time_zone, [["朝","朝"],["昼","昼"],["夜","夜"],["間食","間食"],["起床","起床"],["就寝","就寝"]], {selected: food.time_zone}, required: true%></td>
+          <td><%= f.submit "保存", class: 'btn btn-info btn-xs' %></td>
+      </tr>
+    <% end %>
+  <% end %>
+  <% @food_night.each do |food| %>
+    <%= form_with url: food_path(food), local: true, method: :patch do |f|  %>
+        <tr class="danger">
+          <%= f.hidden_field :id, :value => food.id%>
+          <td><%= food.time_zone %></td>
+          <td><%= food.food_name %></td>
+          <td><%= food.total_protein %></td>
+          <td><%= food.total_carbohydrate %></td>
+          <td><%= food.total_fat %></td>
+          <td><%= food.total_salt_equivalents %></td>
+          <td><%= food.total_calorie%></td>
+          <td><%= f.number_field :quantity, step: "0.1", min: 0.1, max: 10000, required: true, value: food.quantity %></td>
+          <td><%= f.select :time_zone, [["朝","朝"],["昼","昼"],["夜","夜"],["間食","間食"],["起床","起床"],["就寝","就寝"]], {selected: food.time_zone}, required: true%></td>
+          <td><%= f.submit "保存", class: 'btn btn-info btn-xs' %></td>
+      </tr>
+    <% end %>
+  <% end %>
+  <% @food_going_to_bed.each do |food| %>
+    <%= form_with url: food_path(food), local: true, method: :patch do |f|  %>
+        <tr class="danger">
+          <%= f.hidden_field :id, :value => food.id%>
+          <td><%= food.time_zone %></td>
+          <td><%= food.food_name %></td>
+          <td><%= food.total_protein %></td>
+          <td><%= food.total_carbohydrate %></td>
+          <td><%= food.total_fat %></td>
+          <td><%= food.total_salt_equivalents %></td>
+          <td><%= food.total_calorie%></td>
+          <td><%= f.number_field :quantity, step: "0.1", min: 0.1, max: 10000, required: true, value: food.quantity %></td>
+          <td><%= f.select :time_zone, [["朝","朝"],["昼","昼"],["夜","夜"],["間食","間食"],["起床","起床"],["就寝","就寝"]], {selected: food.time_zone}, required: true%></td>
+          <td><%= f.submit "保存", class: 'btn btn-info btn-xs' %></td>
+      </tr>
+    <% end %>
+  <% end %>
+  <% @food_snack.each do |food| %>
+    <%= form_with url: food_path(food), local: true, method: :patch do |f|  %>
+        <tr class="danger">
+          <%= f.hidden_field :id, :value => food.id%>
+          <td><%= food.time_zone %></td>
+          <td><%= food.food_name %></td>
+          <td><%= food.total_protein %></td>
+          <td><%= food.total_carbohydrate %></td>
+          <td><%= food.total_fat %></td>
+          <td><%= food.total_salt_equivalents %></td>
+          <td><%= food.total_calorie%></td>
+          <td><%= f.number_field :quantity, step: "0.1", min: 0.1, max: 10000, required: true, value: food.quantity %></td>
+          <td><%= f.select :time_zone, [["朝","朝"],["昼","昼"],["夜","夜"],["間食","間食"],["起床","起床"],["就寝","就寝"]], {selected: food.time_zone}, required: true%></td>
+          <td><%= f.submit "保存", class: 'btn btn-info btn-xs' %></td>
+      </tr>
+    <% end %>
+  <% end %>
+    <tr class="warning">
+      <td colspan="6">合計カロリー</td>
+      <td><%= @foods.sum("calorie * ( quantity * 0.01)") %></td>
+    </tr>
 <% end %>

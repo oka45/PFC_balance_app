@@ -45,7 +45,6 @@ FactoryBot.define do
        fat { 2.3 }
        salt_equivalents { 0.1 }
        calorie { 93 }
-       total_calories { 93 }
        quantity { 100 }
        date { "2021-03-02" }
        time_zone {"夜"}

@@ -16,70 +16,73 @@
 <% end %>
 
 <% unless @food_information.blank? %>
-<div class="table-responsive">
-<h3>検索結果</h3>
-<table class="table table-bordered table-hover">
-  <thead>
-    <tr class="danger">
-      <th>食品名</th>
-      <th>たんぱく質</th>
-      <th>炭水化物</th>
-      <th>脂質</th>
-      <th>食塩</th>
-      <th>カロリー(100g)</th>
-      <th>摂取量(g)</th>
-      <th>時間</th>
-      <th>保存</th>
-    </tr>
-  </thead>
-  <tbody>
-    <%= render 'shared/food_information'%>
-  </tbody>
-</table>
-</div>
+  <div class="table-responsive">
+    <h3>検索結果(栄養成分は100g当たり)</h3>
+    <table class="table table-bordered table-hover text-center">
+      <thead>
+        <tr class="danger">
+          <th>食品名</th>
+          <th>たんぱく質</th>
+          <th>炭水化物</th>
+          <th>脂質</th>
+          <th>食塩</th>
+          <th>カロリー</th>
+          <th>摂取量(g)</th>
+          <th>時間</th>
+          <th>保存</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render 'shared/food_information'%>
+      </tbody>
+    </table>
+    <%= link_to "検索結果を閉じる", {action: :index, :format => params[:format]}, class: 'btn btn-primary' %>
+  </div>
 <% end %>
 
 
 <div class="table-responsive">
-<h2><%= @path.strftime('%m月%d日')%>摂取量</h2>
-<table class="table table-bordered table-hover table-condensed">
-  <thead>
-    <tr class="warning">
-      <th>食品名</th>
-      <th>たんぱく質</th>
-      <th>炭水化物</th>
-      <th>脂質</th>
-      <th>食塩</th>
-      <th>カロリー(100g)</th>
-      <th>摂取カロリー</th>
-      <th>摂取量(g)</th>
-      <th>時間</th>
+  <h2 class="text-center"><%= @path.strftime('%m月%d日')%>摂取量</h2>
+  <table class="table table-bordered table-hover table-condensed text-center">
+    <thead>
+      <tr class="warning">
+        <th>時間</th>
+        <th>食品名</th>
+        <th>たんぱく質</th>
+        <th>炭水化物</th>
+        <th>脂質</th>
+        <th>食塩</th>
+        <th>摂取カロリー</th>
+        <th>摂取量(g)</th>
+        <% unless @edit_food == 1 %>
+        <th>時間</th>
+        <% end %>
+      <% if @edit_food == 1 %>
+        <th><%= link_to "編集", {action: :index, bottun: 2, :format => params[:format]}, class: 'btn btn-default' %></th>
+      <% else %>
+        <th><%= link_to "編集終了", {action: :index, bottun: 1, :format => params[:format]}, class: 'btn btn-default' %></th>
+      <% end %>
+      </tr>
+    </thead>
+    <tbody>
     <% if @edit_food == 1 %>
-      <th><%= link_to "編集", {action: :index, bottun: 2, :format => params[:format]} %></th>
-    <% else %>
-      <th><%= link_to "編集終了", {action: :index, bottun: 1, :format => params[:format]} %></th>
+      <%= render 'shared/foods_management'%>
     <% end %>
-    </tr>
-  </thead>
-  <tbody>
-  <% if @edit_food == 1 %>
-    <%= render 'shared/foods_management'%>
-  <% end %>
 
-  <% if @edit_food == 2 %>
-    <%= render 'shared/foods_management_edit'%>
-  <% end %>
-  </tbody>
-</table>
+    <% if @edit_food == 2 %>
+      <%= render 'shared/foods_management_edit'%>
+    <% end %>
+    </tbody>
+  </table>
 </div>
 
 
-<h3>今月のカロリーカレンダー</h3>
+<h3 class="text-center">今月のカロリーカレンダー</h3>
 <%= month_calendar do |date| %>
-  <%= date.day %>
+  <%= link_to date.day, foods_path(date)%>
   <p>合計カロリー</p>
-<% if @all_foods.present? %>
-  <%= link_to @all_foods.where(date: date).sum(:total_calories), foods_path(date) %>
-<% end %>
+  <% if @all_foods.present? %>
+    <%= link_to @all_foods.where(date: date).sum("calorie * ( quantity * 0.01)"), foods_path(date)  %>
+  <% end %>
   kcal
 <% end %>
