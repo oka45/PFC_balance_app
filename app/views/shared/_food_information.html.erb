@@ -1,18 +1,18 @@
 <% if @food_information.present? %>
-  <% @food_information.each do |food| %>
-    <%= form_with model: @food, local: true do |f| %>
-      <tr>
-        <td><%= food[:food_and_description] %><%= f.hidden_field :food_name, :value => food[:food_and_description] %></td>
-        <td><%= food[:protein] %><%= f.hidden_field :protein, :value => food[:protein] %></td>
-        <td><%= food[:carbohydrate] %><%= f.hidden_field :carbohydrate, :value => food[:carbohydrate] %></td>
-        <td><%= food[:fat] %><%= f.hidden_field :fat, :value => food[:fat] %></td>
-        <td><%= food[:salt_equivalents] %><%= f.hidden_field :salt_equivalents, :value => food[:salt_equivalents] %></td>
-        <td><%= food[:energy__kcal_] %><%= f.hidden_field :calorie, :value => food[:energy__kcal_] %></td>
-        <td><%= f.number_field :quantity, step: "0.1", min: 0.1, max: 10000, required: true %></td>
-        <td><%= f.select :time_zone, [["朝","朝"],["昼","昼"],["夜","夜"],["間食","間食"],["起床","起床"],["就寝","就寝"]], {include_blank: "選択"}, required: true %></td>
-        <%= f.hidden_field :date, :value => @path %>
-        <td><%= f.submit "保存",class: 'btn btn-info' %></td>
-    </tr>
+    <% @food_information.each do |food| %>
+      <%= form_with model: @food, local: true do |f| %>
+        <tr class="active">
+          <td><%= food[:food_and_description] %><%= f.hidden_field :food_name, :value => food[:food_and_description] %></td>
+          <td><%= food[:protein] %><%= f.hidden_field :protein, :value => food[:protein] %></td>
+          <td><%= food[:carbohydrate] %><%= f.hidden_field :carbohydrate, :value => food[:carbohydrate] %></td>
+          <td><%= food[:fat] %><%= f.hidden_field :fat, :value => food[:fat] %></td>
+          <td><%= food[:salt_equivalents] %><%= f.hidden_field :salt_equivalents, :value => food[:salt_equivalents] %></td>
+          <td><%= food[:energy__kcal_] %><%= f.hidden_field :calorie, :value => food[:energy__kcal_] %></td>
+          <td><%= f.number_field :quantity, step: "0.1", min: 0.1, max: 10000, required: true %></td>
+          <td><%= f.select :time_zone, [["朝","朝"],["昼","昼"],["夜","夜"],["間食","間食"],["起床","起床"],["就寝","就寝"]], {include_blank: "選択"}, required: true %></td>
+          <%= f.hidden_field :date, :value => @path %>
+          <td><%= f.submit "保存",class: 'btn btn-info' %></td>
+      </tr>
+      <% end %>
     <% end %>
-  <% end %>
 <% end %>

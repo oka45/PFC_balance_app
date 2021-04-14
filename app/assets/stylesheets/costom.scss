@@ -7,6 +7,8 @@ $gray-medium-light: #eaeaea;
 
 body {
   padding-top: 80px;
+  height: 100%;
+  background-color: #333;
 }
 
 section {
@@ -25,6 +27,7 @@ textarea {
 .center h1 {
   margin-bottom: 10px;
 }
+
 
 /* header */
 
@@ -50,6 +53,9 @@ textarea {
   box-sizing:         border-box;
 }
 
+.cover h3 {
+  margin-bottom: 30px;
+}
 /* miscellaneous */
 
 .debug_dump {
@@ -69,9 +75,6 @@ input, textarea, select, .uneditable-input {
   @include box_sizing;
 }
 
-input {
-  height: auto !important;
-}
 #error_explanation {
   color: red;
   ul {
@@ -101,6 +104,44 @@ input {
   margin-left: 0;
 }
 
-.calendar-heading {
- font-size: 1.7em;
+.cover-heading {
+  padding-top: 60px;
+  font-size: 65px;
+  letter-spacing: 0.1em;
+}
+
+
+.navbar-default {
+  background-color:  #333;
+
+}
+.navbar-default .navbar-nav > li > a {
+  color: #D9E5FF;
+}
+
+.calendar {
+  background-color: #fff;
+}
+
+.calendar-title {
+  color: #fff;
+}
+
+.font_color {
+  color: #fff;
+}
+
+.calendar-heading span {
+  font-size: 2em
+}
+
+.bth-top {
+  margin-top: 15px;
+}
+.bth-bottom {
+  margin-bottom: 15px;
+}
+section {
+  padding-top: 150px;
+  padding-bottom: 150px;
 }
