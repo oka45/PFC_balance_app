@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2021_04_01_021324) do
 
-  create_table "foods", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "foods", charset: "utf8", force: :cascade do |t|
     t.string "food_name"
     t.decimal "protein", precision: 6, scale: 1
     t.decimal "carbohydrate", precision: 6, scale: 1
@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 2021_04_01_021324) do
     t.index ["user_id"], name: "index_foods_on_user_id"
   end
 
-  create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "users", charset: "utf8", force: :cascade do |t|
     t.string "name"
     t.string "email"
     t.datetime "created_at", precision: 6, null: false
