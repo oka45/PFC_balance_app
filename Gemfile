@@ -66,7 +66,7 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 #bootstrap-sassは、Bootstrapフレームワークでは、スタイルシートを生成するためにLESSを使用するので、SをSassへ変換
-gem 'bootstrap-sass', '3.4.1'
+gem 'bootstrap', '~> 4.6.0'
 
 gem 'jquery-rails'
 #日本語にする為

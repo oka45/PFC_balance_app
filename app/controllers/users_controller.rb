@@ -2,8 +2,9 @@ class UsersController < ApplicationController
   before_action :logged_in_user, only: [:edit, :update, :show, :index, :destroy]
   before_action :correct_user, only: [:edit, :update, :show]
   before_action :admin_user, only: :destroy
+  before_action :forbid_login_user, only: :new
 
-  PER = 5
+  PER = 10
 
   def new
     @user = User.new

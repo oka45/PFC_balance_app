@@ -1,7 +1,7 @@
 <% if @food_information.present? %>
     <% @food_information.each do |food| %>
       <%= form_with model: @food, local: true do |f| %>
-        <tr class="active">
+        <tr class="table-info">
           <td><%= food[:food_and_description] %><%= f.hidden_field :food_name, :value => food[:food_and_description] %></td>
           <td><%= food[:protein] %><%= f.hidden_field :protein, :value => food[:protein] %></td>
           <td><%= food[:carbohydrate] %><%= f.hidden_field :carbohydrate, :value => food[:carbohydrate] %></td>

@@ -1,7 +1,6 @@
 class Food < ApplicationRecord
   belongs_to :user
   default_scope -> { order(created_at: :desc) }
-  validate :date_start
   with_options presence: true do
     validates :user_id, :food_name, :date
     validates :time_zone, inclusion: { in: [ "朝", "昼", "夜" ,"間食", "起床", "就寝" ] }
@@ -38,12 +37,6 @@ class Food < ApplicationRecord
     self.sum("total_calorie").round(1)
   end
 
-  private
 
-  def date_start
-    unless date == nil
-      errors.add(:date, "は、今日を含む過去の日付を入力して下さい") if date > Date.today
-    end
-  end
 
 end

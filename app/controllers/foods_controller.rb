@@ -35,6 +35,7 @@ class FoodsController < ApplicationController
       flash[:success] = "保存しました"
       redirect_to "/foods.#{Date.parse(params[:food][:date] ||= Date.current.strftime('%Y/%m/%d'))}"
     else
+      flash[:success] = "保存に失敗しました"
       render 'index'
     end
   end
@@ -45,6 +46,7 @@ class FoodsController < ApplicationController
       flash[:success] = "食事情報を変更しました"
       redirect_to "/foods.#{@update_food.date.to_s}"
     else
+      flash[:success] = "食事情報を変更できませんでした"
       render  'foods/index'
     end
   end

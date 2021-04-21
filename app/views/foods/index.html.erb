@@ -10,12 +10,12 @@
   <% end %>
 
   <% unless @food_information.blank? %>
-    <div class="table-responsive">
+    <div class="table-responsive-sm">
       <h3 class="font_color text-center">検索結果(栄養成分は100g当たり)</h3>
       <%= link_to "検索結果を閉じる", {action: :index, :format => params[:format]}, class: 'btn btn-primary bth-bottom' %>
-      <table class="table table-bordered table-hover text-center">
+      <table class="table table-hover text-center">
         <thead>
-          <tr class="danger">
+          <tr class="table-light">
             <th>食品名</th>
             <th>たんぱく質</th>
             <th>炭水化物</th>
@@ -36,11 +36,11 @@
   <% end %>
 
 
-  <div class="table-responsive">
+  <div class="table-responsive-sm">
     <h2 class="text-center font_color"><%= @path.strftime('%m月%d日')%>摂取量</h2>
-    <table class="table table-bordered table-hover table-condensed text-center">
+    <table class="table table-hover text-center">
       <thead>
-        <tr class="warning">
+        <tr class="table-light">
           <th>時間</th>
           <th>食品名</th>
           <th>たんぱく質</th>
@@ -53,9 +53,9 @@
           <th>時間</th>
           <% end %>
         <% if @edit_food == 1 %>
-          <th><%= link_to "編集", {action: :index, bottun: 2, :format => params[:format]}, class: 'btn btn-default center-block' %></th>
+          <th><%= link_to "編集", {action: :index, bottun: 2, :format => params[:format]}, class: 'btn btn-outline-info btn-sm' %></th>
         <% else %>
-          <th><%= link_to "編集終了", {action: :index, bottun: 1, :format => params[:format]}, class: 'btn btn-danger center-block' %></th>
+          <th><%= link_to "編集終了", {action: :index, bottun: 1, :format => params[:format]}, class: 'btn btn-outline-warning btn-sm' %></th>
         <% end %>
         </tr>
       </thead>
