@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :logged_in_user, only: [:edit, :update, :show, :index, :destroy]
   before_action :correct_user, only: [:edit, :update, :show]
-  before_action :admin_user, only: :destroy
+  before_action :admin_user, only: [:index] 
   before_action :forbid_login_user, only: :new
 
   PER = 10
@@ -42,9 +42,19 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    User.find(params[:id]).destroy
-    flash[:success] = "ユーザーを削除しました"
-    redirect_to users_url
+    @user = User.find(params[:id])
+    if current_user.admin?
+      User.find(params[:id]).destroy
+      flash[:success] = "ユーザーを削除しました"
+      redirect_to users_url
+    elsif @user.id == current_user.id
+      User.find(params[:id]).destroy
+      flash[:success] = "ユーザーを削除しました"
+      redirect_to root_url
+    else
+      render 'show'
+    end
+
   end
 
   private

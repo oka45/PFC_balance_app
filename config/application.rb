@@ -20,5 +20,6 @@ module PFCBalanceApp
     # config.eager_load_paths << Rails.root.join("extras")
     config.time_zone = 'Tokyo'
     config.i18n.default_locale = :ja
+    
   end
 end

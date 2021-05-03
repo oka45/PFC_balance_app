@@ -18,6 +18,8 @@
         <%= f.password_field :password_confirmation, class: 'form-control' %>
 
         <%= f.submit "アカウントを更新する", class: "btn btn-primary" %>
-      <% end %>
-      <%= link_to "プロフィール画面に戻る", user_path(current_user), class: 'btn btn-info btn-block bth-top'  %>
+    <% end %>
+    <%= link_to "プロフィール画面に戻る", user_path(current_user), class: 'btn btn-info btn-block bth-top'  %>
+    <%= link_to "アカウントを削除する", user_path(current_user), method: :delete, data: { confirm: '削除しますか？' }, class: 'btn btn-danger btn-block bth-top' %>
+</div>
 </div>

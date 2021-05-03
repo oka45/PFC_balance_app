@@ -6,7 +6,7 @@
   <div class="font_color">
     <% @food_get_up.each do |food| %>
       <%= form_with url: food_path(food), local: true, method: :patch do |f|  %>
-          <tr class="table-warning">
+          <tr class="table-warning" id="<%=food.id%>">
             <%= f.hidden_field :id, :value => food.id%>
             <td><%= food.time_zone %></td>
             <td><%= food.food_name %></td>
@@ -23,7 +23,7 @@
     <% end %>
     <% @food_morning.each do |food| %>
       <%= form_with url: food_path(food), local: true, method: :patch do |f|  %>
-          <tr class="table-warning">
+          <tr class="table-warning" id="<%=food.id%>">
             <%= f.hidden_field :id, :value => food.id%>
             <td><%= food.time_zone %></td>
             <td><%= food.food_name %></td>
@@ -40,7 +40,7 @@
     <% end %>
     <% @food_lunch.each do |food| %>
       <%= form_with url: food_path(food), local: true, method: :patch do |f|  %>
-          <tr class="table-warning">
+          <tr class="table-warning" id="<%=food.id%>">
             <%= f.hidden_field :id, :value => food.id%>
             <td><%= food.time_zone %></td>
             <td><%= food.food_name %></td>
@@ -57,7 +57,7 @@
     <% end %>
     <% @food_night.each do |food| %>
       <%= form_with url: food_path(food), local: true, method: :patch do |f|  %>
-          <tr class="table-warning">
+          <tr class="table-warning" id="<%=food.id%>">
             <%= f.hidden_field :id, :value => food.id%>
             <td><%= food.time_zone %></td>
             <td><%= food.food_name %></td>
@@ -74,7 +74,7 @@
     <% end %>
     <% @food_going_to_bed.each do |food| %>
       <%= form_with url: food_path(food), local: true, method: :patch do |f|  %>
-          <tr class="table-warning">
+          <tr class="table-warning" id="<%=food.id%>">
             <%= f.hidden_field :id, :value => food.id%>
             <td><%= food.time_zone %></td>
             <td><%= food.food_name %></td>
@@ -91,7 +91,7 @@
     <% end %>
     <% @food_snack.each do |food| %>
       <%= form_with url: food_path(food), local: true, method: :patch do |f|  %>
-          <tr class="table-warning">
+          <tr class="table-warning" id="<%=food.id%>">
             <%= f.hidden_field :id, :value => food.id%>
             <td><%= food.time_zone %></td>
             <td><%= food.food_name %></td>

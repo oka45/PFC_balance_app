@@ -5,15 +5,14 @@ FactoryBot.define do
     email                 { "test#{Gimei.address.city.romaji}@gmail.com" }
     password              { "password" }
     password_confirmation { "password" }
-  end
 
-  factory :admin_user do
-
-    name                  { "test" }
-    email                 { "testokaoka@gmail.com" }
-    password              { "password" }
-    password_confirmation { "password" }
-    admin                 { true }
+    trait :admin_user do
+      name                  { "test" }
+      email                 { "testokaoka@gmail.com" }
+      password              { "password" }
+      password_confirmation { "password" }
+      admin                 { true }
+    end
   end
 
 end

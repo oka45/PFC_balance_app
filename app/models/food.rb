@@ -37,6 +37,10 @@ class Food < ApplicationRecord
     self.sum("total_calorie").round(1)
   end
 
+  def hogehoge
+    self.inject(0){|sum, add| sum + add.total_calorie}
+  end
+
 
 
 end
