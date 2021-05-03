@@ -1,0 +1,31 @@
+<% provide(:title, "PFC管理") %>
+
+<h1>PFCバランス管理</h1>
+<p>PFCバランスを管理しよう！！</p>
+
+<%= form_with url: management_path, method: :get, local: true do |f| %>
+  <%= f.text_field :food_name, placeholder: "食品名を入力してください", required: true %>
+  <%= f.submit "検索" %>
+<% end %>
+
+<table>
+  <thead>
+    <th>食品名</th>
+    <th>たんぱく質</th>
+    <th>炭水化物</th>
+    <th>脂質</th>
+    <th>食塩</th>
+    <th>カロリー</th>
+  </thead>
+  <tbody>
+  <% @food_information.each do |food| %>
+    <tr><td><%= food["food_and_description"] %></td>
+    <td><%= food["protein"] %></td>
+    <td><%= food["carbohydrate"] %></td>
+    <td><%= food["fat"] %></td>
+    <td><%= food["salt_equivalents"] %></td>
+    <td><%= food["energy__kcal_"] %></td></tr>
+  <% end %>
+</tbody>
+
+</table>

@@ -1,15 +1,27 @@
 <% provide(:title, "ユーザー管理") %>
-<h1>プロフィールの更新</h1>
-
-<ul class="users">
-  <% @users.each do |user| %>
-  <li>
-    <%= link_to user.name, user %>
-    <% if current_user.admin? && !current_user?(user) %>
-    | <%= link_to "削除", user, method: :delete,
-                                date: {confirm: "You sure?"} %>
-  <% end %>
-  </li>
-  <% end %>
-  <%= paginate @users %>
-</ul>
+<div class="container font_color ">
+  <h1 class="page-header text-center">ユーザー管理</h1>
+  <table class="table font_color">
+    <thead>
+      <tr>
+        <th>名前</th>
+        <th>メールアドレス</th>
+        <th>作成日</th>
+        <th>削除</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= user.name %></td>
+          <td><%= user.email %></td>
+          <td><%= user.created_at %></td>
+          <% if current_user.admin? && !current_user?(user) %>
+            <td><%= link_to "削除", user, method: :delete, date: {confirm: "You sure?"}, class: "list-group-item-heading" %></td>
+          <% end %>
+        </tr>
+      <% end %>
+      <%= paginate @users %>
+    </tbody>
+  </table>
+</div>

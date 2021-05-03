@@ -1,0 +1,89 @@
+
+<% if @foods.blank? %>
+  <tr class="table-light">
+    <td colspan="10">食品情報なし</td>
+  </tr>
+<% else %>
+    <% @food_get_up.each do |food| %>
+        <tr class="table-light">
+          <td><%= food.time_zone %></td>
+          <td><%= food.food_name %></td>
+          <td><%= food.total_protein %></td>
+          <td><%= food.total_carbohydrate %></td>
+          <td><%= food.total_fat %></td>
+          <td><%= food.total_salt_equivalents %></td>
+          <td><%= food.total_calorie %></td>
+          <td><%= food.quantity %></td>
+          <td><%= link_to "削除", food_path(food.id, :format => params[:format]), method: :delete, class: 'btn btn-danger btn-sm' %></td>
+        </tr>
+    <% end %>
+    <% @food_morning.each do |food| %>
+      <tr class="table-light">
+          <td><%= food.time_zone %></td>
+          <td><%= food.food_name %></td>
+          <td><%= food.total_protein %></td>
+          <td><%= food.total_carbohydrate %></td>
+          <td><%= food.total_fat %></td>
+          <td><%= food.total_salt_equivalents %></td>
+          <td><%= food.total_calorie %></td>
+          <td><%= food.quantity %></td>
+          <td><%= link_to "削除", food_path(food.id, :format => params[:format]), method: :delete, class: 'btn btn-danger btn-sm' %></td>
+        </tr>
+    <% end %>
+    <% @food_lunch.each do |food| %>
+        <tr class="table-light">
+          <td><%= food.time_zone %></td>
+          <td><%= food.food_name %></td>
+          <td><%= food.total_protein %></td>
+          <td><%= food.total_carbohydrate %></td>
+          <td><%= food.total_fat %></td>
+          <td><%= food.total_salt_equivalents %></td>
+          <td><%= food.total_calorie %></td>
+          <td><%= food.quantity %></td>
+          <td><%= link_to "削除", food_path(food.id, :format => params[:format]), method: :delete, class: 'btn btn-danger btn-sm' %></td>
+        </tr>
+    <% end %>
+    <% @food_night.each do |food| %>
+        <tr class="table-light">
+          <td><%= food.time_zone %></td>
+          <td><%= food.food_name %></td>
+          <td><%= food.total_protein %></td>
+          <td><%= food.total_carbohydrate %></td>
+          <td><%= food.total_fat %></td>
+          <td><%= food.total_salt_equivalents %></td>
+          <td><%= food.total_calorie %></td>
+          <td><%= food.quantity %></td>
+          <td><%= link_to "削除", food_path(food.id, :format => params[:format]), method: :delete, class: 'btn btn-danger btn-sm' %></td>
+        </tr>
+    <% end %>
+    <% @food_going_to_bed.each do |food| %>
+        <tr class="table-light">
+          <td><%= food.time_zone %></td>
+          <td><%= food.food_name %></td>
+          <td><%= food.total_protein %></td>
+          <td><%= food.total_carbohydrate %></td>
+          <td><%= food.total_fat %></td>
+          <td><%= food.total_salt_equivalents %></td>
+          <td><%= food.total_calorie %></td>
+          <td><%= food.quantity %></td>
+          <td><%= link_to "削除", food_path(food.id, :format => params[:format]), method: :delete, class: 'btn btn-danger btn-sm' %></td>
+        </tr>
+    <% end %>
+    <% @food_snack.each do |food| %>
+       <tr class="table-light">
+          <td><%= food.time_zone %></td>
+          <td><%= food.food_name %></td>
+          <td><%= food.total_protein %></td>
+          <td><%= food.total_carbohydrate %></td>
+          <td><%= food.total_fat %></td>
+          <td><%= food.total_salt_equivalents %></td>
+          <td><%= food.total_calorie %></td>
+          <td><%= food.quantity %></td>
+          <td><%= link_to "削除", food_path(food.id, :format => params[:format]), method: :delete, class: 'btn btn-danger btn-sm' %></td>
+        </tr>
+    <% end %>
+    <tr class="table-light">
+      <td colspan="6">合計カロリー</td>
+      <td><%= @foods.sum("calorie * ( quantity * 0.01)").round(1) %></td>
+    </tr>
+<% end %>

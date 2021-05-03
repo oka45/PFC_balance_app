@@ -1,0 +1,80 @@
+<% provide(:title, "PFC管理") %>
+<div class="container">
+  <%= form_with url: "/foods.#{@path}", method: :get, local: true do |f| %>
+    <div class="input-group">
+      <%= f.text_field :name, placeholder: "摂取した食品を入力してください", required: true, class: "form-control" %>
+      <span class="input-group-btn">
+        <%= f.submit "検索", class: "btn btn-primary" %>
+      </span>
+    </div>
+  <% end %>
+
+  <% unless @food_information.blank? %>
+    <div class="table-responsive-sm">
+      <h3 class="font_color text-center">検索結果(栄養成分は100g当たり)</h3>
+      <%= link_to "検索結果を閉じる", {action: :index, :format => params[:format]}, class: 'btn btn-primary bth-bottom' %>
+      <table class="table table-hover text-center">
+        <thead>
+          <tr class="table-light">
+            <th>食品名</th>
+            <th>たんぱく質</th>
+            <th>炭水化物</th>
+            <th>脂質</th>
+            <th>食塩</th>
+            <th>カロリー</th>
+            <th>摂取量(g)</th>
+            <th>時間</th>
+            <th>保存</th>
+          </tr>
+        </thead>
+       <tbody>
+          <%= render 'shared/food_information'%>
+        </tbody>
+      </table>
+      <%= link_to "検索結果を閉じる", {action: :index, :format => params[:format]}, class: 'btn btn-primary' %>
+    </div>
+  <% end %>
+
+
+  <div class="table-responsive-sm">
+    <h2 class="text-center font_color"><%= @path.strftime('%m月%d日')%>摂取量</h2>
+    <table class="table table-hover text-center">
+      <thead>
+        <tr class="table-light">
+          <th>時間</th>
+          <th>食品名</th>
+          <th>たんぱく質</th>
+          <th>炭水化物</th>
+          <th>脂質</th>
+          <th>食塩</th>
+          <th>摂取カロリー</th>
+          <th>摂取量(g)</th>
+          <% unless @edit_food == 1 %>
+          <th>時間</th>
+          <% end %>
+        <% if @edit_food == 1 %>
+          <th><%= link_to "編集", {action: :index, bottun: 2, :format => params[:format]}, class: 'btn btn-outline-info btn-sm' %></th>
+        <% else %>
+          <th><%= link_to "編集終了", {action: :index, bottun: 1, :format => params[:format]}, class: 'btn btn-outline-warning btn-sm' %></th>
+        <% end %>
+        </tr>
+      </thead>
+      <tbody>
+      <% if @edit_food == 1 %>
+        <%= render 'shared/foods_management' %>
+      <% else %>
+        <%= render 'shared/foods_management_edit' %>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+
+
+  <h3 class="text-center calendar-title">今月のカロリーカレンダー</h3>
+  <%= month_calendar do |date| %>
+    <%= link_to date.day, foods_path(date)%>
+    <p>合計カロリー</p>
+    <%= link_to @all_foods.where(date: date).sum("calorie * ( quantity * 0.01)"), foods_path(date)  %>
+    kcal
+  <% end %>
+</div>

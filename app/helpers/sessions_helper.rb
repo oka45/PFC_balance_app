@@ -51,5 +51,10 @@ module SessionsHelper
     session[:forwarding_url] = request.original_url if request.get?
   end
 
+  def forbid_login_user
+    if current_user != nil
+      redirect_to "/foods"
+    end
+  end
 
 end
