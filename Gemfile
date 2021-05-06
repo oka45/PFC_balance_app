@@ -71,3 +71,5 @@ gem 'bootstrap', '~> 4.6.0'
 gem 'jquery-rails'
 #日本語にする為
 gem 'rails-i18n', '~> 6.0.0'
+
+gem 'dotenv-rails'
