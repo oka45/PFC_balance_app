@@ -11,11 +11,11 @@
 * Nginx  
 * Puma  
 * AWS  
- * VPC  
- * EC2  
- * RDS  
- * Route53  
- * Certificate Manager  
+    * VPC  
+    * EC2  
+    * RDS  
+    * Route53  
+    * Certificate Manager  
 * Docker/Docker-compose  
 * RSpec  
 * Oracle APEX(API)  
@@ -33,8 +33,8 @@
 
 ### テスト
 * RSpec   
- * 単体テスト(model)  
- * 機能テスト(request)  
- * 統合テスト(system)  
+    * 単体テスト(model)  
+    * 機能テスト(request)  
+    * 統合テスト(system)  
 
 
