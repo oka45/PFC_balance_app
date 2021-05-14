@@ -2,8 +2,6 @@
 @import "simple_calendar";
 $gray-medium-light: #eaeaea;
 
-/* universal */
-
 body {
   height: 100%;
   background-color: #333;
@@ -66,7 +64,7 @@ textarea {
 
 /* forms */
 
-input, textarea, select, .uneditable-input {
+input:not(.exclusion), textarea, select:not(.exclusion), .uneditable-input {
   border: 1px solid #bbb;
   width: 100%;
   margin-top: 15px;
@@ -104,7 +102,6 @@ input, textarea, select, .uneditable-input {
 
 .cover-heading {
   padding-top: 60px;
-  font-size: 65px;
   letter-spacing: 0.1em;
 }
 
@@ -143,3 +140,150 @@ section {
   padding-top: 150px;
   padding-bottom: 150px;
 }
+
+.contents {
+  background-color: rgba(0,0,0,0.6);
+  width: 100%;
+  height: 800px;
+}
+
+
+
+.featurette-divider {
+  margin: 30px 0; 
+}
+
+
+.featurette-heading {
+  font-weight: 300;
+  line-height: 1;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+.featurette-image {
+  background-color: rgba(0,0,0,0.6);
+}
+.image-size{
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+
+// 大デバイス（デスクトップ, 1200px 未満）
+@media (min-width: 992px) {
+  .example {
+    width: 100%;
+    height: 800px;
+    color: #fff;
+    background-image: url("./BO151030535008_TP_V.jpg");
+    background-size: cover;
+    background-position: center;
+    font-family: serif;
+    margin-top: 10px;
+    padding-bottom: 100px;
+  }
+  .cover-heading {
+    font-size: 65px;
+  }
+  .about-text{
+    font-size: 30px;
+  }
+  .test-user-text{
+    font-size: 40px;
+  }
+ }
+ // 中デバイス（タブレット, 992px 未満）
+ @media (max-width: 991.98px) {
+  .example {
+    width: 100%;
+    height: 800px;
+    color: #fff;
+    background-image: url("./BO151030535008_TP_V.jpg");
+    background-size: cover;
+    background-position: center;
+    font-family: serif;
+    margin-top: 10px;
+    padding-bottom: 100px;
+  }
+  .cover-heading {
+    font-size: 65px;
+  }
+  .about-text{
+    font-size: 25px;
+  }
+  .test-user-text{
+    font-size: 30px;
+  }
+ }
+ // 小デバイス（横向きモバイル, 768px 未満）
+ @media (max-width: 767.98px) {
+  .example {
+    width: 100%;
+    height: 600px;
+    color: #fff;
+    background-image: url("./BO151030535008_TP_V.jpg");
+    background-size: cover;
+    background-position: center;
+    font-family: serif;
+    margin-top: 10px;
+    padding-bottom: 100px;
+  }
+  .cover-heading {
+    font-size: 45px;
+  }
+  .cover-text {
+    font-size: 20px;
+  }
+  .about-text{
+    font-size: 18px;
+  }
+  .user-show-text{
+    font-size: 30px;
+  }
+  .index-text {
+    font-size: 12px;
+  }
+  .test-user-text{
+    font-size: 25px;
+  }
+ }
+ // @include media-breakpoint-up(sm) {
+ // 極小デバイス（縦向きモバイル, 576px 未満）
+ @media (max-width: 575.98px) {
+  .example {
+    width: 100%;
+    height: 400px;
+    color: #fff;
+    background-image: url("./BO151030535008_TP_V.jpg");
+    background-size: cover;
+    background-position: center;
+    font-family: serif;
+    margin-top: 10px;
+    padding-bottom: 100px;
+  }
+  .cover-heading {
+    font-size: 45px;
+  }
+   .cover-text {
+    font-size: 20px;
+  }
+  .example {
+    padding-bottom: 50px;
+  }
+  .about-text{
+    font-size: 18px;
+  }
+  .calendar-text{
+    font-size: 2px;
+  }
+  .user-show-text{
+    font-size: 25px;
+  }
+  .index-text {
+    font-size: 10px;
+  }
+  .test-user-text{
+    font-size: 20px;
+  }
+ }

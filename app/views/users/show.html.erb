@@ -2,8 +2,8 @@
 <div class="container font_color">
   <h1 class="page-header text-center">プロフィール</h1>
   <h1>
-    <p>名前：<%= @user.name %></p>
-    <p>メールアドレス：<%= @user.email %></p>
+    <p class="user-show-text">名前：<%= @user.name %></p>
+    <p class="user-show-text">メールアドレス：<%= @user.email %></p>
   </h1>
   <%= link_to "編集する", edit_user_path(current_user), class: 'btn btn-info btn-block bth-top'  %>
 </div>
