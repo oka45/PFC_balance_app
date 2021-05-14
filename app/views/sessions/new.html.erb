@@ -3,19 +3,35 @@
   <h1 class="text-center">ログイン</h1>
       <%= form_with(url: login_path, scope: :session, local:true ) do |f| %>
 
-      <%= f.label :email, "メールアドレス" %>
-      <%= f.email_field :email, class:'form-control' %>
+        <%= f.label :email, "メールアドレス" %>
+        <%= f.email_field :email, class:'form-control' %>
 
-      <%= f.label :password, "パスワード" %>
-      <%= f.password_field :password, class:'form-control' %>
+        <%= f.label :password, "パスワード" %>
+        <%= f.password_field :password, class:'form-control' %>
 
-      <%= f.label :remember_me, class: "checkbox inline" do %>
-        <%= f.check_box :remember_me %>
-        <span>ログイン状態を保存する</span>
-      <% end %>
+        <%= f.label :remember_me, class: "checkbox inline" do %>
+          <%= f.check_box :remember_me %>
+          <span>ログイン状態を保存する</span>
+        <% end %>
 
-      <%= f.submit "ログイン", class: "btn btn-primary" %>
+        <%= f.submit "ログイン", class: "btn btn-primary" %>
       <% end %>
 
       <p>アカウントを持ってない？<%= link_to "アカウントを作る", signup_path %></p>
+
+      <hr class="featurette-divider">
+
+      <p class="test-user-text">アプリを使用する際にご利用ください</p>
+
+      <hr class="featurette-divider">
+
+      <p class="test-user-text">管理者ユーザー</p>
+      <p class="test-user-text">メールアドレス：example@sample.jp</p>
+      <p class="test-user-text">パスワード：foobar</p>
+
+      <hr class="featurette-divider">
+      
+      <p class="test-user-text">一般ユーザー（削除しないでください）</p>
+      <p class="test-user-text">メールアドレス：test-example@sample.jp</p>
+      <p class="test-user-text">パスワード：testtest</p>
 </div>

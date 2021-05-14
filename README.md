@@ -18,7 +18,7 @@
     * Certificate Manager  
 * Docker/Docker-compose  
 * RSpec  
-* Oracle APEX(API)  
+* Oracle(apex.oracle.comよりREST APIで食品検索)  
 
 ## AWS構成図
 ![ポートフォリオ構成図](https://user-images.githubusercontent.com/73508583/117901924-59f05e00-b307-11eb-886f-edd23a63273d.png)
@@ -27,7 +27,7 @@
 ## 機能一覧
 * ユーザー登録、ログイン機能  
 * 食品登録  
-* 食品検索機能(OracleDBから)  
+* 食品検索機能(apex.oracle.com)  
 * ページネーション機能(kaminari)  
 * カレンダー機能(simple_calendar)  
 
