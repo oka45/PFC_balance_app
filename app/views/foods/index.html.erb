@@ -15,7 +15,7 @@
       <%= link_to "検索結果を閉じる", {action: :index, :format => params[:format]}, class: 'btn btn-primary bth-bottom' %>
       <table class="table table-hover text-center">
         <thead>
-          <tr class="table-light">
+          <tr class="text-nowrap table-light">
             <th>食品名</th>
             <th>たんぱく質</th>
             <th>炭水化物</th>
@@ -40,7 +40,7 @@
     <h2 class="text-center font_color"><%= @path.strftime('%m月%d日')%>摂取量</h2>
     <table class="table table-hover text-center">
       <thead>
-        <tr class="table-light">
+        <tr class="text-nowrap table-light">
           <th>時間</th>
           <th>食品名</th>
           <th>たんぱく質</th>
@@ -72,9 +72,11 @@
 
   <h3 class="text-center calendar-title">今月のカロリーカレンダー</h3>
   <%= month_calendar do |date| %>
-    <%= link_to date.day, foods_path(date)%>
-    <p>合計カロリー</p>
-    <%= link_to @all_foods.where(date: date).sum("calorie * ( quantity * 0.01)"), foods_path(date)  %>
-    kcal
+    <div class="calendar-text">
+      <%= link_to date.day, foods_path(date)%>
+      <p class="calendar-text">合計</p>
+      <%= link_to @all_foods.where(date: date).sum("calorie * ( quantity * 0.01)"), foods_path(date), class:"calendar-text" %>
+      kcal
+    </div>
   <% end %>
 </div>

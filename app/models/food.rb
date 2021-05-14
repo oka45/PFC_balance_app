@@ -14,23 +14,23 @@ class Food < ApplicationRecord
   end
 
   def total_protein
-    self.protein * (self.quantity * 0.01).round(1)
+    (self.protein * (self.quantity * 0.01)).round(1)
   end
 
   def total_carbohydrate
-    self.carbohydrate * (self.quantity * 0.01).round(1)
+    (self.carbohydrate * (self.quantity * 0.01)).round(1)
   end
 
   def total_fat
-    self.fat * (self.quantity * 0.01).round(1)
+    (self.fat * (self.quantity * 0.01)).round(1)
   end
 
   def total_salt_equivalents
-    self.salt_equivalents * (self.quantity * 0.01).round(1)
+    (self.salt_equivalents * (self.quantity * 0.01)).round(1)
   end
 
   def total_calorie
-    self.calorie * (self.quantity * 0.01).round(2)
+    (self.calorie * (self.quantity * 0.01)).round(1)
   end
 
   def today_total_calories
