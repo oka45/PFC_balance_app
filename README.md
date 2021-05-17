@@ -1,5 +1,5 @@
 # PFCバランサー
-食事を管理するサイトです。 [https://pfc-balance-app.com](https://pfc-balance-app.com) 
+食事を管理するサイトです。[(https://pfc-balance-app.com)](https://pfc-balance-app.com)<br> 
 いつ何をどれだけ食べたかを記録し管理することができます。  
 一つのページで食事の管理ができます。また、カレンダー機能を使い日毎のカロリーをひと目で確認できます。
 ![スクリーンショット 2021-05-12 9 43 35](https://user-images.githubusercontent.com/73508583/117901889-434a0700-b307-11eb-96b9-f7e21163e73c.png)
